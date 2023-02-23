@@ -5,15 +5,14 @@ import com.example.SpringBatch.Step.ItemReader.Students.Student2;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.StreamSupport;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
-@EnableBatchProcessing
+@Component
 @Slf4j   //Stringi konkatenacia e anum  debugi jamanak
 public  class StudentReaderImpl implements StudentReader  {
 
@@ -23,6 +22,7 @@ public  class StudentReaderImpl implements StudentReader  {
 
     return workbook.getSheetAt(0);
   }
+
 
   @Override
   public    List<Student1> student1(InputStream stream1) throws IOException {
@@ -41,7 +41,6 @@ public  class StudentReaderImpl implements StudentReader  {
         .map(StudentFieldList::toStudent2)
         .toList();
   }
-
 
 
 

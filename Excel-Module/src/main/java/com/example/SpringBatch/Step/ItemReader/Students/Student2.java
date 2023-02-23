@@ -9,6 +9,7 @@ import lombok.ToString;
 @Setter
 @Builder
 @ToString
+
 public class Student2 {
   private long id;
   private String name;
@@ -16,6 +17,7 @@ public class Student2 {
   private int wave;
   private String  email;
   private String date;
+  private String rating;
 
 }
 

@@ -19,6 +19,7 @@ public class StudentFieldList {
         .email(row.getCell(4).getStringCellValue())
         .date(row.getCell(5).getCellType() == CellType.STRING ? row.getCell(5).getStringCellValue() :
             String.valueOf(row.getCell(5).getNumericCellValue()))
+        .rating(row.getCell(6).getStringCellValue())
 
         .build();
   }
@@ -32,6 +33,8 @@ public class StudentFieldList {
         .email(row.getCell(4).getStringCellValue())
         .date(row.getCell(5).getCellType() == CellType.STRING ? row.getCell(5).getStringCellValue() :
             String.valueOf(row.getCell(5).getNumericCellValue()))
+        .rating(row.getCell(6).getStringCellValue())
+
 
         .build();
   }
