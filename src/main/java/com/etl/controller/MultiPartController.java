@@ -43,10 +43,11 @@ public class MultiPartController {
         return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/all")
     public ResponseEntity<?> getAll() {
         List<Student> allStudents = studentsRepository.findAll();
 
         return ResponseEntity.ok(allStudents);
     }
 }
+//produces = MediaType.APPLICATION_JSON_VALUE

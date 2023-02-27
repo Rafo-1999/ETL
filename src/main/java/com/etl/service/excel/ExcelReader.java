@@ -66,10 +66,10 @@ public class ExcelReader {
             Cell cell1 = row1.getCell(columnIndex);
             Cell cell2 = row2.getCell(columnIndex);
 
-            if (cell1.getCellType() == CellType.STRING && cell2.getCellType() == CellType.STRING) {
+            if (cell1.getCellType() == CellType.NUMERIC && cell2.getCellType() == CellType.NUMERIC) {
                 Date date1 = cell1.getDateCellValue();
                 Date date2 = cell2.getDateCellValue();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat dateFormat = new SimpleDateFormat();
                 columnValues.add(dateFormat.format(date1));
                 columnValues.add(dateFormat.format(date2));
             } else if (cell1.getCellType() == CellType.STRING && cell2.getCellType() == CellType.STRING) {
