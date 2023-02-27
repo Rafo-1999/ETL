@@ -19,30 +19,30 @@
 <table id="dataTable">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Wave</th>
-        <th>Email</th>
-        <th>Date</th>
-        <th>Rating</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-<script>
+        <!--  <th>ID</th> -->
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Wave</th>
+          <th>Email</th>
+          <th>Date</th>
+          <th>Rating</th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+  </table>
+  <script>
       const loadBtn = document.getElementById("loadBtn");
       const dataTable = document.getElementById("dataTable");
       loadBtn.addEventListener("click", () => {
-        fetch("http://localhost:8080/all")
+          fetch("http://localhost:8080/all")
           .then(response => response.json())
           .then(data => {
-            dataTable.innerHTML = "";
-            data.forEach(item => {
-              const row = document.createElement("tr");
-              row.innerHTML = `
-                <td>${item.id}</td>
+              dataTable.innerHTML = "";
+              data.forEach(item => {
+                  const row = document.createElement("tr");
+                  row.innerHTML = `
+                <!--  <td>${item.id}</td> -->
                 <td>${item.name}</td>
                 <td>${item.surname}</td>
                 <td>${item.wave}</td>
@@ -50,11 +50,13 @@
                 <td>${item.date}</td>
                 <td>${item.rating}</td>
               `;
-              dataTable.appendChild(row);
+                dataTable.appendChild(row);
             });
-          })
-          .catch(error => console.error(error));
-      });
-    </script>
+        })
+        .catch(error => console.error(error));
+    });
+</script>
+
+
 </body>
 </html>

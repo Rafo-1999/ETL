@@ -22,32 +22,45 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class MultiPartController {
 
-    @Autowired
-    StudentsRepository studentsRepository;
+  @Autowired
+  StudentsRepository studentsRepository;
 
-    @Autowired
-    @Qualifier("excelProcessor")
-    Processor<Student> excelProcessor;
+  @Autowired
+  @Qualifier("excelProcessor")
+  Processor<Student> excelProcessor;
 
-    @PostMapping("/upload")
-    public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) throws IOException {
-        InputStream inputStream = file.getInputStream();
-        String name = file.getOriginalFilename();
+  @PostMapping("/upload")
+  public ResponseEntity<?> upload(@RequestParam("file1") MultipartFile file1,
+      @RequestParam("file2") MultipartFile file2) throws IOException {
+    InputStream inputStream1 = file1.getInputStream();
+    InputStream inputStream2 = file2.getInputStream();
+    String name1 = file1.getOriginalFilename();
+    String name2 = file2.getOriginalFilename();
 
-        Type type = ExtensionDetector.detectType(name);
-        if (type.equals(Type.EXCEL)) {
+    Type type1 = ExtensionDetector.detectType(name1);
+    Type type2 = ExtensionDetector.detectType(name2);
+    if (type1.equals(Type.EXCEL) && type2.equals(Type.EXCEL)) {
 
-            List<Student> process = excelProcessor.process(inputStream);
-            return ResponseEntity.ok(process);
-        }
-        return ResponseEntity.badRequest().build();
+      List<Student> process1 = excelProcessor.process(inputStream1);
+      List<Student> process2 = excelProcessor.process(inputStream2);
+
+      ResponseEntity.ok().build();
+      return ResponseEntity.ok(process2);
     }
+    return ResponseEntity.badRequest().build();
+  }
 
-    @GetMapping(value = "/all")
-    public ResponseEntity<?> getAll() {
-        List<Student> allStudents = studentsRepository.findAll();
+  @GetMapping(value = "/all")
+  public ResponseEntity<?> getAll() {
+    List<Student> allStudents = studentsRepository.findAll();
 
-        return ResponseEntity.ok(allStudents);
-    }
+    return ResponseEntity.ok(allStudents);
+  }
+
+  @GetMapping(value = "/clear")
+  public ResponseEntity<?> clearAll() {
+    studentsRepository.deleteAll();
+    return ResponseEntity.ok().build();
+  }
 }
 //produces = MediaType.APPLICATION_JSON_VALUE

@@ -46,11 +46,11 @@ class ExcelProcessor implements Processor<Student> {
         .headRowNumber(1)  //out first line
         .doReadAllSync();   //read all line
 
+
     List<Student> formattedStudents = students.stream()
 
         .map(ExcelFormatter::format)
         .toList();
-
     return repository.saveAll(formattedStudents);
 
   }
